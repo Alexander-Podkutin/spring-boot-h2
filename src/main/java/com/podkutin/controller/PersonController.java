@@ -1,6 +1,9 @@
 package com.podkutin.controller;
 
+import com.podkutin.exception.ResourceNotFound;
 import com.podkutin.view.PersonVO;
+import org.springframework.boot.web.servlet.ErrorPage;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
  * Created by apodkutin on 8/7/16.
@@ -25,10 +30,15 @@ public class PersonController {
 
 
         List<PersonVO> resultPerson = persons.stream().filter(
-                p -> fullName.equals(p.getFullName())).collect(Collectors.toList());
+                p -> fullName.equalsIgnoreCase(p.getFullName())).collect(Collectors.toList());
 
-        return !resultPerson.isEmpty() ? resultPerson.get(0) : null;
+        if (!resultPerson.isEmpty()) {
+            return resultPerson.get(0);
+        } else {
+            throw new ResourceNotFound();
+        }
 
 
     }
+
 }
