@@ -7,23 +7,23 @@ import java.util.Set;
  */
 public class OrderVO {
 
-    private long id;
+    private Long id;
 
     private String number;
 
     private Set<ItemVO> items;
 
-    public OrderVO(long id, String number, Set<ItemVO> items) {
+    public OrderVO(Long id, String number, Set<ItemVO> items) {
         this.id = id;
         this.number = number;
         this.items = items;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

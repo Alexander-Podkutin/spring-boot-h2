@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class ClientVO {
 
-    private long id;
+    private Long id;
 
     private String login;
 
@@ -17,7 +17,7 @@ public class ClientVO {
 
     private List<OrderVO> orders;
 
-    public ClientVO(long id, String login, String firstName, String lastName, List<OrderVO> orders) {
+    public ClientVO(Long id, String login, String firstName, String lastName, List<OrderVO> orders) {
         this.id = id;
         this.login = login;
         this.firstName = firstName;
@@ -25,11 +25,11 @@ public class ClientVO {
         this.orders = orders;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -64,4 +64,5 @@ public class ClientVO {
     public void setOrders(List<OrderVO> orders) {
         this.orders = orders;
     }
+
 }

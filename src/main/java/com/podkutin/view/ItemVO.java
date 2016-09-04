@@ -5,23 +5,23 @@ package com.podkutin.view;
  */
 public class ItemVO {
 
-    private long id;
+    private Long id;
 
     private String name;
 
     private int quantity;
 
-    public ItemVO(long id, String name, int quantity) {
+    public ItemVO(Long id, String name, int quantity) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
