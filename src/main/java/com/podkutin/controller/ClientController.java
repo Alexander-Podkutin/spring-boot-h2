@@ -2,7 +2,7 @@ package com.podkutin.controller;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import com.podkutin.entities.Client;
+import com.podkutin.entities.ClientDO;
 import com.podkutin.exception.ClientNotFoundException;
 import com.podkutin.repositories.ClientRepository;
 import com.podkutin.utils.mapping.ClientMappingFunction;
@@ -28,27 +28,27 @@ public class ClientController {
     public ClientVO showClient(@PathVariable Long clientId) {
         validateShowClient(clientId);
 
-        Client clientDO = clientRepository.findOne(clientId);
-        if (clientDO == null) {
-            throw new ClientNotFoundException(String.format("Client with id=[%s], not found", clientId));
+        ClientDO clientDODO = clientRepository.findOne(clientId);
+        if (clientDODO == null) {
+            throw new ClientNotFoundException(String.format("ClientDO with id=[%s], not found", clientId));
         }
 
-        ClientVO clientVO = new ClientMappingFunction().apply(clientDO);
+        ClientVO clientVO = new ClientMappingFunction().apply(clientDODO);
         return clientVO;
     }
 
     @RequestMapping("/all")
     public List<ClientVO> getAllClients() {
-        List<Client> clientListDO = ImmutableList.copyOf(clientRepository.findAll());
+        List<ClientDO> clientDOListDO = ImmutableList.copyOf(clientRepository.findAll());
         ClientMappingFunction clientMappingFunction = new ClientMappingFunction();
-        return clientListDO.stream().map(new ClientMappingFunction()).collect(Collectors.<ClientVO>toList());
+        return clientDOListDO.stream().map(new ClientMappingFunction()).collect(Collectors.<ClientVO>toList());
     }
 
     private static void validateShowClient(Long clientId) {
         try {
             Preconditions.checkNotNull(clientId);
         } catch (NullPointerException ex) {
-            throw new ClientNotFoundException("Client not found, because you not set id of client.");
+            throw new ClientNotFoundException("ClientDO not found, because you not set id of client.");
         }
     }
 

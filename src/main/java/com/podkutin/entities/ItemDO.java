@@ -7,7 +7,7 @@ import java.util.Objects;
  * Created by apodkutin on 9/2/2016.
  */
 @Entity
-public class Item {
+public class ItemDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,16 +16,16 @@ public class Item {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "order", nullable = false)
-    private Order order;
+    @JoinColumn(name = "orderDO", nullable = false)
+    private OrderDO orderDO;
 
     private Integer quantity;
 
-    protected Item() {}
+    protected ItemDO() {}
 
-    public Item(String name, Order order, Integer quantity) {
+    public ItemDO(String name, OrderDO orderDO, Integer quantity) {
         this.name = name;
-        this.order = order;
+        this.orderDO = orderDO;
         this.quantity = quantity;
     }
 
@@ -45,12 +45,12 @@ public class Item {
         this.name = name;
     }
 
-    public Order getOrder() {
-        return order;
+    public OrderDO getOrderDO() {
+        return orderDO;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderDO(OrderDO orderDO) {
+        this.orderDO = orderDO;
     }
 
     public Integer getQuantity() {
@@ -63,23 +63,23 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("Item[id=[%s], name=[%s], order=[%s] quantity=[%s]]",
-                this.id, this.name, this.order, this.quantity);
+        return String.format("ItemDO[id=[%s], name=[%s], order=[%s] quantity=[%s]]",
+                this.id, this.name, this.orderDO, this.quantity);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
+        ItemDO item = (ItemDO) o;
         return Objects.equals(id, item.id) &&
                 Objects.equals(name, item.name) &&
-                Objects.equals(order, item.order) &&
+                Objects.equals(orderDO, item.orderDO) &&
                 Objects.equals(quantity, item.quantity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, order, quantity);
+        return Objects.hash(id, name, orderDO, quantity);
     }
 }

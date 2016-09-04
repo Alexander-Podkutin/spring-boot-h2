@@ -1,4 +1,4 @@
 1. Add h2 entity
-2. Add controllers to client, order, item
+2. Add controllers to clientDO, orderDO, itemDO
 3. Angular
 

@@ -1,6 +1,7 @@
 package com.podkutin.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ import java.util.Objects;
  * Created by apodkutin on 9/2/2016.
  */
 @Entity
-public class Client {
+public class ClientDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,16 +21,22 @@ public class Client {
 
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-    private List<Order> orders;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientDO", fetch = FetchType.EAGER)
+    private List<OrderDO> ordersDO = new ArrayList<>();
 
-    protected Client() {}
+    protected ClientDO() {}
 
-    public Client(String login, String firstName, String lastName, List<Order> orders) {
+    public ClientDO(String login, String firstName, String lastName) {
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.orders = orders;
+    }
+
+    public ClientDO(String login, String firstName, String lastName, List<OrderDO> ordersDO) {
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ordersDO = ordersDO;
     }
 
     public Long getId() {
@@ -64,25 +71,25 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<OrderDO> getOrdersDO() {
+        return ordersDO;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setOrdersDO(List<OrderDO> ordersDO) {
+        this.ordersDO = ordersDO;
     }
 
     @Override
     public String toString() {
-        return String.format("Client[id=[%s], login=[%s], firstName=[%s], lastName=[%s], orders=[%s]]",
-                this.id, this.login, this.firstName, this.lastName, "empty");
+        return String.format("ClientDO[id=[%s], login=[%s], firstName=[%s], lastName=[%s], orders=[%s]]",
+                this.id, this.login, this.firstName, this.lastName, this.ordersDO != null ? this.ordersDO.size() : null);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
+        ClientDO client = (ClientDO) o;
         return Objects.equals(id, client.id) &&
                 Objects.equals(login, client.login) &&
                 Objects.equals(firstName, client.firstName) &&
