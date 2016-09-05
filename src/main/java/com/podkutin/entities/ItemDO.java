@@ -63,8 +63,11 @@ public class ItemDO {
 
     @Override
     public String toString() {
-        return String.format("ItemDO[id=[%s], name=[%s], order=[%s] quantity=[%s]]",
-                this.id, this.name, this.orderDO, this.quantity);
+        return String.format("ItemDO[id=[%s], name=[%s], order.id=[%s] quantity=[%s]]",
+                this.id,
+                this.name,
+                this.orderDO != null ? this.orderDO.getId() : null,
+                this.quantity);
     }
 
     @Override
@@ -80,6 +83,16 @@ public class ItemDO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, orderDO, quantity);
+        int result = 0;
+
+        if (this == null)
+            return result;
+
+        result = 31 * result + (this.id == null ? 0 : this.id.hashCode());
+        result = 31 * result + (this.name == null ? 0 : this.name.hashCode());
+        result = 31 * result + (this.orderDO == null ? 0 : this.orderDO.hashCode());
+        result = 31 * result + (this.quantity == null ? 0 : this.quantity.hashCode());
+
+        return result;
     }
 }

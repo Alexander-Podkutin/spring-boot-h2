@@ -13,17 +13,17 @@ import java.util.stream.Collectors;
  */
 public class ClientMappingFunction implements Function<ClientDO, ClientVO> {
     @Override
-    public ClientVO apply(ClientDO client) {
-        if (client == null) {
+    public ClientVO apply(final ClientDO clientDO) {
+        if (clientDO == null) {
             return null;
         }
-        List<OrderVO> ordersVO = client.getOrdersDO() != null ?
-                client.getOrdersDO().stream().map(
+        final List<OrderVO> ordersVO = clientDO.getOrdersDO() != null ?
+                clientDO.getOrdersDO().stream().map(
                         new OrderMappingFunction()).collect(Collectors.<OrderVO>toList()) :
                 null;
 
-        ClientVO clientVO = new ClientVO(client.getId(), client.getLogin(),
-                client.getFirstName(), client.getLastName(), ordersVO);
+        final ClientVO clientVO = new ClientVO(clientDO.getId(), clientDO.getLogin(),
+                clientDO.getFirstName(), clientDO.getLastName(), ordersVO);
 
         return clientVO;
     }

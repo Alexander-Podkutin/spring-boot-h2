@@ -32,13 +32,6 @@ public class ClientDO {
         this.lastName = lastName;
     }
 
-    public ClientDO(String login, String firstName, String lastName, List<OrderDO> ordersDO) {
-        this.login = login;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.ordersDO = ordersDO;
-    }
-
     public Long getId() {
         return id;
     }
@@ -82,7 +75,11 @@ public class ClientDO {
     @Override
     public String toString() {
         return String.format("ClientDO[id=[%s], login=[%s], firstName=[%s], lastName=[%s], orders=[%s]]",
-                this.id, this.login, this.firstName, this.lastName, this.ordersDO != null ? this.ordersDO.size() : null);
+                this.id,
+                this.login,
+                this.firstName,
+                this.lastName,
+                this.ordersDO != null ? this.ordersDO : null);
     }
 
     @Override
@@ -98,6 +95,17 @@ public class ClientDO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, firstName, lastName);
+
+        int result = 0;
+
+        if (this == null)
+            return result;
+
+        result = 31 * result + (this.id == null ? 0 : this.id.hashCode());
+        result = 31 * result + (this.login == null ? 0 : this.login.hashCode());
+        result = 31 * result + (this.firstName == null ? 0 : this.firstName.hashCode());
+        result = 31 * result + (this.lastName == null ? 0 : this.lastName.hashCode());
+
+        return result;
     }
 }

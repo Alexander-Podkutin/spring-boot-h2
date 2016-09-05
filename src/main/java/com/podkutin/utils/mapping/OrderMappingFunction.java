@@ -1,21 +1,30 @@
 package com.podkutin.utils.mapping;
 
 import com.podkutin.entities.OrderDO;
+import com.podkutin.view.ItemVO;
 import com.podkutin.view.OrderVO;
 
+import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by apodkutin on 9/4/2016.
  */
 public class OrderMappingFunction implements Function<OrderDO, OrderVO> {
     @Override
-    public OrderVO apply(OrderDO order) {
-        if (order == null) {
+    public OrderVO apply(final OrderDO orderDO) {
+        if (orderDO == null) {
             return null;
         }
 
-        OrderVO orderVO = new OrderVO(order.getId(), order.getNumber(), null);
+        final Set<ItemVO> itemsVO = orderDO.getItemsDO() != null ?
+                orderDO.getItemsDO().stream().map(
+                        new ItemMappingFunction()).collect(Collectors.<ItemVO>toSet()) :
+                null;
+
+        final OrderVO orderVO = new OrderVO(orderDO.getId(), orderDO.getNumber(), itemsVO);
         return orderVO;
     }
 }

@@ -25,26 +25,26 @@ public class ClientController {
     ClientRepository clientRepository;
 
     @RequestMapping(value = "/show/{clientId}", method = RequestMethod.GET)
-    public ClientVO showClient(@PathVariable Long clientId) {
+    public ClientVO showClient(@PathVariable final Long clientId) {
         validateShowClient(clientId);
 
-        ClientDO clientDODO = clientRepository.findOne(clientId);
-        if (clientDODO == null) {
+        final ClientDO clientDO = clientRepository.findOne(clientId);
+        if (clientDO == null) {
             throw new ClientNotFoundException(String.format("ClientDO with id=[%s], not found", clientId));
         }
 
-        ClientVO clientVO = new ClientMappingFunction().apply(clientDODO);
+        final ClientVO clientVO = new ClientMappingFunction().apply(clientDO);
         return clientVO;
     }
 
     @RequestMapping("/all")
     public List<ClientVO> getAllClients() {
-        List<ClientDO> clientDOListDO = ImmutableList.copyOf(clientRepository.findAll());
-        ClientMappingFunction clientMappingFunction = new ClientMappingFunction();
-        return clientDOListDO.stream().map(new ClientMappingFunction()).collect(Collectors.<ClientVO>toList());
+        final List<ClientDO> clientListDO = ImmutableList.copyOf(clientRepository.findAll());
+        final ClientMappingFunction clientMappingFunction = new ClientMappingFunction();
+        return clientListDO.stream().map(new ClientMappingFunction()).collect(Collectors.<ClientVO>toList());
     }
 
-    private static void validateShowClient(Long clientId) {
+    private static void validateShowClient(final Long clientId) {
         try {
             Preconditions.checkNotNull(clientId);
         } catch (NullPointerException ex) {

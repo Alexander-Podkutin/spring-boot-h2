@@ -21,14 +21,10 @@ public class OrderDO {
     @JoinColumn(name = "clientDO", nullable = false)
     private ClientDO clientDO;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderDO")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderDO", fetch = FetchType.EAGER)
     private Set<ItemDO> itemsDO = new HashSet<>();
 
     protected OrderDO() {}
-
-    public OrderDO(String number) {
-        this.number = number;
-    }
 
     public OrderDO(String number, ClientDO clientDO) {
         this.number = number;
@@ -75,8 +71,11 @@ public class OrderDO {
 
     @Override
     public String toString() {
-        return String.format("OrderDO[id=[%s], number=[%s], clientDO=[%s], items=[%s]]",
-                this.id, this.number, this.clientDO, this.itemsDO != null ? this.itemsDO.size() : null);
+        return String.format("OrderDO[id=[%s], number=[%s], clientDO.id=[%s], items=[%s]]",
+                this.id,
+                this.number,
+                this.clientDO != null ? this.clientDO.getId() : null,
+                this.itemsDO != null ? this.itemsDO : null);
     }
 
     @Override
@@ -91,6 +90,15 @@ public class OrderDO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, number, clientDO);
+        int result = 0;
+
+        if (this == null)
+            return result;
+
+        result = 31 * result + (this.id == null ? 0 : this.id.hashCode());
+        result = 31 * result + (this.number == null ? 0 : this.number.hashCode());
+        result = 31 * result + (this.clientDO == null ? 0 : this.clientDO.hashCode());
+
+        return result;
     }
 }
