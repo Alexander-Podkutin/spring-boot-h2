@@ -1,7 +1,7 @@
 package com.podkutin.utils.mapping;
 
 import com.podkutin.entities.ItemDO;
-import com.podkutin.view.ItemVO;
+import com.podkutin.views.ItemVO;
 
 import java.util.function.Function;
 

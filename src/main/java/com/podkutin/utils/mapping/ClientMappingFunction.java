@@ -1,8 +1,8 @@
 package com.podkutin.utils.mapping;
 
 import com.podkutin.entities.ClientDO;
-import com.podkutin.view.ClientVO;
-import com.podkutin.view.OrderVO;
+import com.podkutin.views.ClientVO;
+import com.podkutin.views.OrderVO;
 
 import java.util.List;
 import java.util.function.Function;

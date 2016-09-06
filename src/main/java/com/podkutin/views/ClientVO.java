@@ -1,4 +1,4 @@
-package com.podkutin.view;
+package com.podkutin.views;
 
 import java.util.List;
 

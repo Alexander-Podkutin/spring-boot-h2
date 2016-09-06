@@ -1,10 +1,9 @@
 package com.podkutin.utils.mapping;
 
 import com.podkutin.entities.OrderDO;
-import com.podkutin.view.ItemVO;
-import com.podkutin.view.OrderVO;
+import com.podkutin.views.ItemVO;
+import com.podkutin.views.OrderVO;
 
-import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
