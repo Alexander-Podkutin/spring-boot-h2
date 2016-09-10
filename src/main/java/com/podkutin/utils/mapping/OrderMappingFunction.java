@@ -23,7 +23,10 @@ public class OrderMappingFunction implements Function<OrderDO, OrderVO> {
                         new ItemMappingFunction()).collect(Collectors.<ItemVO>toSet()) :
                 null;
 
-        final OrderVO orderVO = new OrderVO(orderDO.getId(), orderDO.getNumber(), itemsVO);
+        final OrderVO orderVO = new OrderVO(orderDO.getId(),
+                orderDO.getNumber(),
+                orderDO.getClientDO() != null ? orderDO.getClientDO().getId() : null,
+                itemsVO);
         return orderVO;
     }
 }

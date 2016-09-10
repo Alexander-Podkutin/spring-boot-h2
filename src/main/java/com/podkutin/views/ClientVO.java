@@ -25,6 +25,9 @@ public class ClientVO {
         this.orders = orders;
     }
 
+    public ClientVO() {
+    }
+
     public Long getId() {
         return id;
     }

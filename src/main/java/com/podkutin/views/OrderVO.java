@@ -11,12 +11,18 @@ public class OrderVO {
 
     private String number;
 
+    private Long clientId;
+
     private Set<ItemVO> items;
 
-    public OrderVO(Long id, String number, Set<ItemVO> items) {
+    public OrderVO(Long id, String number, Long clientId, Set<ItemVO> items) {
         this.id = id;
         this.number = number;
+        this.clientId = clientId;
         this.items = items;
+    }
+
+    public OrderVO() {
     }
 
     public Long getId() {
@@ -44,4 +50,11 @@ public class OrderVO {
     }
 
 
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
 }

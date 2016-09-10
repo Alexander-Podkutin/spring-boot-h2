@@ -9,12 +9,18 @@ public class ItemVO {
 
     private String name;
 
+    private Long orderId;
+
     private int quantity;
 
-    public ItemVO(Long id, String name, int quantity) {
+    public ItemVO(Long id, String name, Long orderId, int quantity) {
         this.id = id;
         this.name = name;
+        this.orderId = orderId;
         this.quantity = quantity;
+    }
+
+    public ItemVO() {
     }
 
     public Long getId() {
@@ -39,5 +45,13 @@ public class ItemVO {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 }

@@ -15,7 +15,10 @@ public class ItemMappingFunction implements Function<ItemDO, ItemVO> {
             return null;
 
 
-        final ItemVO itemVO = new ItemVO(itemDO.getId(), itemDO.getName(), itemDO.getQuantity());
+        final ItemVO itemVO = new ItemVO(itemDO.getId(),
+                itemDO.getName(),
+                itemDO.getOrderDO() != null ? itemDO.getOrderDO().getId() : null,
+                itemDO.getQuantity());
         return itemVO;
     }
 }
