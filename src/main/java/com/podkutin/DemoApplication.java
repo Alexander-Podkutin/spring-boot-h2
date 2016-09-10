@@ -43,7 +43,6 @@ public class DemoApplication {
 			OrderDO orderSix = new OrderDO("6666-2", clientThree);
 			OrderDO orderSeven = new OrderDO("777-2", clientThree);
 
-
 			Set<ItemDO> itemsDO = Sets.newHashSet(new ItemDO("Table", orderOne, 1),
 					new ItemDO("Chair", orderTwo, 4),
 					new ItemDO("Door", orderThree, 2),

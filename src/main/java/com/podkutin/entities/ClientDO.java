@@ -21,7 +21,7 @@ public class ClientDO {
 
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientDO", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "clientDO", fetch = FetchType.EAGER)
     private List<OrderDO> ordersDO = new ArrayList<>();
 
     protected ClientDO() {}

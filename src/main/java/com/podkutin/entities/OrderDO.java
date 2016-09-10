@@ -21,7 +21,7 @@ public class OrderDO {
     @JoinColumn(name = "clientDO", nullable = false)
     private ClientDO clientDO;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderDO", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "orderDO", fetch = FetchType.EAGER)
     private Set<ItemDO> itemsDO = new HashSet<>();
 
     protected OrderDO() {}
