@@ -26,13 +26,13 @@ public class OrderController {
     private final OrderRepository orderRepository;
     private final ClientRepository clientRepository;
 
-    public OrderController(OrderRepository orderRepository, ClientRepository clientRepository) {
+    public OrderController(final OrderRepository orderRepository, final ClientRepository clientRepository) {
         this.orderRepository = orderRepository;
         this.clientRepository = clientRepository;
     }
 
     @RequestMapping(value = "/client/{clientId}", method = RequestMethod.GET)
-    public List<OrderVO> getOrderByClientId(@PathVariable final Long clientId) {
+    public List<OrderVO> getOrdersByClientId(@PathVariable final Long clientId) {
 
         ValidationUtils.validateParam(clientId, String.format("Error input value clientId=[%s]", clientId));
 

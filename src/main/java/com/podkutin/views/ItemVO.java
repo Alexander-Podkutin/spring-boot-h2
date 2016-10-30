@@ -11,7 +11,7 @@ public class ItemVO {
 
     private Long orderId;
 
-    private int quantity;
+    private Integer quantity;
 
     public ItemVO(Long id, String name, Long orderId, int quantity) {
         this.id = id;
@@ -39,11 +39,11 @@ public class ItemVO {
         this.name = name;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
