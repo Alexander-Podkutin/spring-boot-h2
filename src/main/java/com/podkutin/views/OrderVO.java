@@ -29,32 +29,15 @@ public class OrderVO {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getNumber() {
         return number;
     }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public Set<ItemVO> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<ItemVO> items) {
-        this.items = items;
-    }
-
 
     public Long getClientId() {
         return clientId;
     }
 
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
+    public Set<ItemVO> getItems() {
+        return items;
     }
 }
