@@ -5,6 +5,7 @@ import com.podkutin.entities.ClientDO;
 import com.podkutin.exception.ClientNotFoundException;
 import com.podkutin.repositories.ClientRepository;
 import com.podkutin.services.ClientService;
+import com.podkutin.utils.ValidationUtils;
 import com.podkutin.utils.mapping.ClientMappingFunction;
 import com.podkutin.views.ClientVO;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,8 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ClientVO showClient(Long clientId) {
+
+        ValidationUtils.validateParam(clientId, String.format("Error input value clientId=[%s]", clientId));
         final ClientDO clientDO = clientRepository.findOne(clientId);
 
         if (clientDO == null) {

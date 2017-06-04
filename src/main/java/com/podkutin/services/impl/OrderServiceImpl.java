@@ -7,6 +7,7 @@ import com.podkutin.exception.OrderNotFoundException;
 import com.podkutin.repositories.ClientRepository;
 import com.podkutin.repositories.OrderRepository;
 import com.podkutin.services.OrderService;
+import com.podkutin.utils.ValidationUtils;
 import com.podkutin.utils.mapping.OrderMappingFunction;
 import com.podkutin.views.OrderVO;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderVO createOrder(OrderVO orderVO) {
+
+        ValidationUtils.validateParam(orderVO.getClientId(),
+                String.format("Error input value clientId=[%s]", orderVO.getClientId()));
         final ClientDO client = clientRepository.findOne(orderVO.getClientId());
 
         if (client == null) {
@@ -46,6 +50,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderVO showOrder(Long orderId) {
+
+        ValidationUtils.validateParam(orderId, String.format("Error input value orderId=[%s]", orderId));
         final OrderDO orderDO = orderRepository.findOne(orderId);
 
         if (orderDO == null) {
@@ -57,12 +63,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void destroyOrder(Long orderId) {
+        ValidationUtils.validateParam(orderId, String.format("Error input value orderId=[%s]", orderId));
         orderRepository.delete(orderId);
     }
 
     @Override
     public List<OrderVO> getOrdersByClientId(Long clientId) {
 
+        ValidationUtils.validateParam(clientId, String.format("Error input value clientId=[%s]", clientId));
         return orderRepository.findByClientDO(
                 clientRepository.findOne(clientId)).stream().
                 map(new OrderMappingFunction()).

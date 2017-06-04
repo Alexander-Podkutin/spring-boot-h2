@@ -7,6 +7,7 @@ import com.podkutin.exception.OrderNotFoundException;
 import com.podkutin.repositories.ItemRepository;
 import com.podkutin.repositories.OrderRepository;
 import com.podkutin.services.ItemService;
+import com.podkutin.utils.ValidationUtils;
 import com.podkutin.utils.mapping.ItemMappingFunction;
 import com.podkutin.views.ItemVO;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemVO createItem(ItemVO itemVO) {
+
+        ValidationUtils.validateParam(itemVO.getOrderId(),
+                String.format("Error input value orderId=[%s]", itemVO.getOrderId()));
         OrderDO orderDO = orderRepository.findOne(itemVO.getOrderId());
 
         if (orderDO == null) {
@@ -47,6 +51,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemVO showItem(Long itemId) {
+
+        ValidationUtils.validateParam(itemId, String.format("Error input value itemId=[%s]", itemId));
         final ItemDO itemDO = itemRepository.findOne(itemId);
 
         if (itemDO == null) {
@@ -58,11 +64,15 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void destroyItem(Long itemId) {
+        ValidationUtils.validateParam(itemId, String.format("Error input value itemId=[%s]", itemId));
         itemRepository.delete(itemId);
     }
 
     @Override
     public List<ItemVO> getItemsByOrderId(Long orderId) {
+
+        ValidationUtils.validateParam(orderId, String.format("Error input value orderId=[%s]", orderId));
+
         return itemRepository.findByOrderDO(
                 orderRepository.findOne(orderId)).stream().
                 map(new ItemMappingFunction()).

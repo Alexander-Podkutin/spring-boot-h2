@@ -27,8 +27,6 @@ public class ClientController {
 
     @RequestMapping(value = "/show/{clientId}", method = RequestMethod.GET)
     public ClientVO showClient(@PathVariable final Long clientId) {
-
-        ValidationUtils.validateParam(clientId, String.format("Error input value clientId=[%s]", clientId));
         return clientService.showClient(clientId);
     }
 

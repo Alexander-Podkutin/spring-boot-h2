@@ -1,6 +1,6 @@
 package com.podkutin.utils;
 
-import com.google.common.base.Preconditions;
+import static com.google.common.base.Preconditions.checkNotNull;
 import com.podkutin.exception.BadRequestException;
 
 /**
@@ -10,7 +10,7 @@ public class ValidationUtils {
 
     public static void validateParam(Object paramValue, String errorMessage) {
         try {
-            Preconditions.checkNotNull(paramValue);
+            checkNotNull(paramValue);
         } catch (NullPointerException ex) {
             throw new BadRequestException(errorMessage);
         }
