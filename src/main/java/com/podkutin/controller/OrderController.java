@@ -20,22 +20,22 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @RequestMapping(value = "/client/{clientId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/clients/{clientId}", method = RequestMethod.GET)
     public List<OrderVO> getOrdersByClientId(@PathVariable final Long clientId) {
         return orderService.getOrdersByClientId(clientId);
     }
 
-    @RequestMapping(value = "/show/{orderId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{orderId}", method = RequestMethod.GET)
     public OrderVO showOrder(@PathVariable final Long orderId) {
         return orderService.showOrder(orderId);
     }
 
-    @RequestMapping(value = "/destroy/{orderId}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/{orderId}", method = RequestMethod.DELETE)
     public void destroyOrder(@PathVariable final Long orderId) {
         orderService.destroyOrder(orderId);
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody OrderVO createOrder(@RequestBody final OrderVO orderVO) {
         return orderService.createOrder(orderVO);
     }

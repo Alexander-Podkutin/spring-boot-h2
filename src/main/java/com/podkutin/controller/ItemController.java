@@ -20,22 +20,22 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @RequestMapping(value = "/order/{orderId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/orders/{orderId}", method = RequestMethod.GET)
     public List<ItemVO> getItemsByOrderId(@PathVariable final Long orderId) {
         return itemService.getItemsByOrderId(orderId);
     }
 
-    @RequestMapping(value = "/show/{itemId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{itemId}", method = RequestMethod.GET)
     public ItemVO showItem(@PathVariable final Long itemId) {
         return itemService.showItem(itemId);
     }
 
-    @RequestMapping(value = "/destroy/{itemId}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/{itemId}", method = RequestMethod.DELETE)
     public void destroyItem(@PathVariable final Long itemId) {
         itemService.destroyItem(itemId);
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody ItemVO createItem(@RequestBody final ItemVO itemVO) {
         return itemService.createItem(itemVO);
     }

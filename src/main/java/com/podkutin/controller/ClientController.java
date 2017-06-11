@@ -25,14 +25,14 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @RequestMapping(value = "/show/{clientId}", method = RequestMethod.GET)
-    public ClientVO showClient(@PathVariable final Long clientId) {
-        return clientService.showClient(clientId);
-    }
-
-    @RequestMapping("/all")
+    @RequestMapping
     public List<ClientVO> getAllClients() {
         return clientService.getAllClients();
+    }
+
+    @RequestMapping(path = "/{clientId}", method = RequestMethod.GET)
+    public ClientVO showClient(@PathVariable final Long clientId) {
+        return clientService.showClient(clientId);
     }
 
 }
