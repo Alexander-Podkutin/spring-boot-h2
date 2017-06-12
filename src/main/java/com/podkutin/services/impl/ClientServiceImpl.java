@@ -8,6 +8,8 @@ import com.podkutin.services.ClientService;
 import com.podkutin.utils.ValidationUtils;
 import com.podkutin.utils.mapping.ClientMappingFunction;
 import com.podkutin.views.ClientVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class ClientServiceImpl implements ClientService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ClientServiceImpl.class);
 
     ClientRepository clientRepository;
 
@@ -43,6 +47,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<ClientVO> listClients() {
         final List<ClientDO> clientListDO = ImmutableList.copyOf(clientRepository.findAll());
+        logger.info("List all clients=[{}]", clientListDO);
         return clientListDO.stream().map(new ClientMappingFunction()).collect(Collectors.<ClientVO>toList());
     }
 }
