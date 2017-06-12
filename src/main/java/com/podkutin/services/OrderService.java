@@ -11,9 +11,9 @@ public interface OrderService {
 
     OrderVO createOrder(final OrderVO orderVO);
 
-    OrderVO showOrder( final Long orderId);
+    OrderVO getOrder(final Long orderId);
 
-    void destroyOrder(final Long orderId);
+    void deleteOrder(final Long orderId);
 
     List<OrderVO> getOrdersByClientId(final Long clientId);
 }

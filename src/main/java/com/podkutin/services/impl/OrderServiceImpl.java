@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderVO showOrder(Long orderId) {
+    public OrderVO getOrder(Long orderId) {
 
         ValidationUtils.validateParam(orderId, String.format("Error input value orderId=[%s]", orderId));
         final OrderDO orderDO = orderRepository.findOne(orderId);
@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void destroyOrder(Long orderId) {
+    public void deleteOrder(Long orderId) {
         ValidationUtils.validateParam(orderId, String.format("Error input value orderId=[%s]", orderId));
         orderRepository.delete(orderId);
     }

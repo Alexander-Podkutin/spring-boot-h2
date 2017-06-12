@@ -50,7 +50,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemVO showItem(Long itemId) {
+    public ItemVO getItem(Long itemId) {
 
         ValidationUtils.validateParam(itemId, String.format("Error input value itemId=[%s]", itemId));
         final ItemDO itemDO = itemRepository.findOne(itemId);
@@ -63,13 +63,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void destroyItem(Long itemId) {
+    public void deleteItem(Long itemId) {
         ValidationUtils.validateParam(itemId, String.format("Error input value itemId=[%s]", itemId));
         itemRepository.delete(itemId);
     }
 
     @Override
-    public List<ItemVO> getItemsByOrderId(Long orderId) {
+    public List<ItemVO> listItemsByOrderId(Long orderId) {
 
         ValidationUtils.validateParam(orderId, String.format("Error input value orderId=[%s]", orderId));
 

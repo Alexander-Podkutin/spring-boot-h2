@@ -28,7 +28,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientVO showClient(Long clientId) {
+    public ClientVO getClient(Long clientId) {
 
         ValidationUtils.validateParam(clientId, String.format("Error input value clientId=[%s]", clientId));
         final ClientDO clientDO = clientRepository.findOne(clientId);
@@ -41,7 +41,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<ClientVO> getAllClients() {
+    public List<ClientVO> listClients() {
         final List<ClientDO> clientListDO = ImmutableList.copyOf(clientRepository.findAll());
         return clientListDO.stream().map(new ClientMappingFunction()).collect(Collectors.<ClientVO>toList());
     }

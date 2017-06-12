@@ -11,9 +11,9 @@ public interface ItemService {
 
     ItemVO createItem(final ItemVO itemVO);
 
-    ItemVO showItem(final Long itemId);
+    ItemVO getItem(final Long itemId);
 
-    void destroyItem(final Long itemId);
+    void deleteItem(final Long itemId);
 
-    List<ItemVO> getItemsByOrderId(final Long orderId);
+    List<ItemVO> listItemsByOrderId(final Long orderId);
 }

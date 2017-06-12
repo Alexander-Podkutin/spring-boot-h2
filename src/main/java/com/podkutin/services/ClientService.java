@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface ClientService {
 
-    ClientVO showClient(Long clientId);
+    ClientVO getClient(Long clientId);
 
-    List<ClientVO> getAllClients();
+    List<ClientVO> listClients();
 
 }

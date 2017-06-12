@@ -2,7 +2,6 @@ package com.podkutin.controller;
 
 import com.podkutin.repositories.ClientRepository;
 import com.podkutin.services.ClientService;
-import com.podkutin.utils.ValidationUtils;
 import com.podkutin.views.ClientVO;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +25,13 @@ public class ClientController {
     }
 
     @RequestMapping
-    public List<ClientVO> getAllClients() {
-        return clientService.getAllClients();
+    public List<ClientVO> listClients() {
+        return clientService.listClients();
     }
 
     @RequestMapping(path = "/{clientId}", method = RequestMethod.GET)
-    public ClientVO showClient(@PathVariable final Long clientId) {
-        return clientService.showClient(clientId);
+    public ClientVO getClient(@PathVariable final Long clientId) {
+        return clientService.getClient(clientId);
     }
 
 }

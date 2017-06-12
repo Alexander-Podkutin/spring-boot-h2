@@ -1,7 +1,6 @@
 package com.podkutin.controller;
 
 import com.podkutin.services.ItemService;
-import com.podkutin.utils.ValidationUtils;
 import com.podkutin.views.ItemVO;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,18 +20,18 @@ public class ItemController {
     }
 
     @RequestMapping(path = "/orders/{orderId}", method = RequestMethod.GET)
-    public List<ItemVO> getItemsByOrderId(@PathVariable final Long orderId) {
-        return itemService.getItemsByOrderId(orderId);
+    public List<ItemVO> listItemsByOrderId(@PathVariable final Long orderId) {
+        return itemService.listItemsByOrderId(orderId);
     }
 
     @RequestMapping(path = "/{itemId}", method = RequestMethod.GET)
-    public ItemVO showItem(@PathVariable final Long itemId) {
-        return itemService.showItem(itemId);
+    public ItemVO getItem(@PathVariable final Long itemId) {
+        return itemService.getItem(itemId);
     }
 
     @RequestMapping(path = "/{itemId}", method = RequestMethod.DELETE)
-    public void destroyItem(@PathVariable final Long itemId) {
-        itemService.destroyItem(itemId);
+    public void deleteItem(@PathVariable final Long itemId) {
+        itemService.deleteItem(itemId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
